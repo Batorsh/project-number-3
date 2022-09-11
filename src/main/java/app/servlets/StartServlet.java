@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/start")
+public class StartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Model model = Model.getInstance();
-        List<String> names = model.list();
-        req.setAttribute("userNames", names);
+        String name = req.getParameter("name");
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/start.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

@@ -5,10 +5,12 @@
   Time: 10:11
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.util.List" %>
+
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Enter your name</title>
+    <title>Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
@@ -18,33 +20,22 @@
 
 <body>
 <div>
-    <h1>Super app!</h1>
+    <h1>Hello man!</h1>
 </div>
+<%
+    List<String> names = (List<String>) request.getAttribute("userNames");
 
-<div>
-    <%
-        if (request.getAttribute("userName") != null) {
-            out.println("<p>User '" + request.getAttribute("userName") + "' added!</p>");
+    if (names != null && !names.isEmpty()) {
+        out.println("<ui>");
+        for (String s : names) {
+            out.println("<li>" + s + "</li>");
         }
-    %>
-    <div>
-        <div>
-            <h2>Enter your name</h2>
-        </div>
-
-        <form method="post">
-            <label>Name:
-                <input type="text" name="name"><br/>
-            </label>
-            <a class="btn btn-primary" type="submit" href="/start" role="button">GO!</a>
-
-        </form>
-    </div>
-</div>
-
+        out.println("</ui>");
+    } else out.println("<p>There are no users yet!</p>");
+%>
 
 <div>
-    <a class="btn btn-secondary btn-lg btn-block" href="/" role="button">Back to main</a>
+    <a class="btn btn-secondary btn-lg btn-block" href="/" role="button">Exit game</a>
 </div>
 </body>
 </html>
